@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surprise For You! 👀</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #000;
+            color: #00ff00;
+            font-family: 'Courier New', Courier, monospace;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            user-select: none;
+        }
+
+        /* Initial Button Styling */
+        #start-container {
+            text-align: center;
+            z-index: 999;
+            padding: 20px;
+        }
+
+        .start-btn {
+            background: #ff0055;
+            color: white;
+            border: none;
+            padding: 20px 40px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 0 20px #ff0055;
+            transition: 0.2s;
+        }
+
+        .start-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Hacking Screen (Hidden Initially) */
+        #hacker-screen {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            box-sizing: border-box;
+            padding: 20px;
+            font-size: 1.1rem;
+            line-height: 1.5;
+            z-index: 10;
+        }
+
+        /* Disco Flash Effect */
+        .disco-flash {
+            animation: discoEffect 0.3s infinite;
+        }
+
+        @keyframes discoEffect {
+            0% { background-color: #000000; }
+            33% { background-color: #1a0000; }
+            66% { background-color: #001a00; }
+            100% { background-color: #000000; }
+        }
+
+        /* Deadly Warning Style */
+        .camera-warning {
+            color: #ff0000;
+            font-size: 1.6rem;
+            font-weight: bold;
+            text-align: center;
+            text-transform: uppercase;
+            border: 3px solid #ff0000;
+            padding: 15px;
+            background: rgba(0,0,0,0.8);
+            margin-bottom: 20px;
+            box-shadow: 0 0 20px #ff0000;
+            animation: pulse 0.6s infinite alternate;
+        }
+
+        @keyframes pulse {
+            from { transform: scale(1); }
+            to { transform: scale(1.02); }
+        }
+
+        /* Hacker Mask Center Image */
+        .hacker-mask-img {
+            display: block;
+            margin: 20px auto;
+            width: 150px;
+            height: auto;
+            opacity: 0.8;
+            filter: drop-shadow(0 0 15px #00ff00);
+        }
+
+        .terminal-line {
+            margin: 8px 0;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 2px 5px;
+            display: inline-block;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Step 1: Innocent Click Target -->
+    <div id="start-container">
+        <h2 style="color: white; margin-bottom: 30px;">Tap below to see who secretly likes you! 😉</h2>
+        <button class="start-btn" onclick="startUltimatePrank()">Check Now 🔍</button>
+    </div>
+
+    <!-- Step 2: Ultimate Hacker Screen -->
+    <div id="hacker-screen">
+        <!-- Shocking Camera Warning Line -->
+        <div class="camera-warning">
+            🚨 YOUR CAMERA IS ACTIVE, DEVICE IS HACKED AND LIVE VIDEO IS SENDING TO HACKER 💀👽💀
+        </div>
+
+        <!-- Anonymous Hacker Mask Image -->
+        <img class="hacker-mask-img" src="https://unsplash.com" alt="Hacker Matrix">
+
+        <!-- Live Code Streams -->
+        <div id="terminal-content"></div>
+    </div>
+
+    <!-- Heart-racing Siren Sound -->
+    <audio id="scary-audio" loop>
+        <source src="https://soundjay.com" type="audio/mpeg">
+    </audio>
+
+    <script>
+        const attackLogs = [
+            "[>] Bypassing Apple/Android Firewalls...",
+            "[+] FRONT CAMERA STREAM: CONNECTED (RAW_MODE)",
+            "[🔴] CAPTURING FACE AND GEOLOCATION DATA...",
+            "[>] ACCESSING WHATSAPP DB & RECENT CHATS...",
+            "[⚡] CLONING LOCAL SIM & CONTACT LIST...",
+            "[⚠️] INJECTING CC'D KHUFIA EXPLOIT TO ROOT DIRECTORY...",
+            "[🔥] WIPING SYSTEM OS LOGS TO PREVENT TRACKING...",
+            "[!] TOTAL DEVICE EXPLOIT COMPLETELY SUCCESSFUL 💀"
+        ];
+
+        function startUltimatePrank() {
+            // Hide intro screen & show scary hacker screen
+            document.getElementById('start-container').style.display = 'none';
+            const screen = document.getElementById('hacker-screen');
+            screen.style.display = 'block';
+            screen.classList.add('disco-flash');
+
+            // Trigger Scary Sound
+            const audio = document.getElementById('scary-audio');
+            audio.volume = 1.0;
+            audio.play().catch(err => console.log("Audio permission block workaround active"));
+
+            // Continuous Phone Vibration Patterns
+            if (navigator.vibrate) {
+                navigator.vibrate([500, 300, 500, 300, 1000]);
+                setInterval(() => {
+                    navigator.vibrate([500, 300, 1000]);
+                }, 2500);
+            }
+
+            // Print Fake Command Lines
+            let index = 0;
+            const terminal = document.getElementById('terminal-content');
+
+            function typeLines() {
+                if (index < attackLogs.length) {
+                    const line = document.createElement('div');
+                    line.classList.add('terminal-line');
+                    line.innerText = attackLogs[index];
+                    terminal.appendChild(line);
+                    terminal.appendChild(document.createElement('br'));
+                    index++;
+                    setTimeout(typeLines, 1000);
+                }
+            }
+            typeLines();
+        }
+    </script>
+</body>
+</html>
